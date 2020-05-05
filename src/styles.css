@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --padding: 0.75em;
+}
+
+body {
+  font-size: 1.2rem;
+  line-height: 1.418;
+  max-width: 48em;
+  margin: auto;
+  color: #c9c9c9;
+  background-color: #222222;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+  font-family: sans;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.topnav .active {
+  font-weight: bold;
+}
+
+a:link:hover {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+.topnav {
+  display: flex;
+  justify-content: space-around;
+  background: #333;
+  padding: var(--padding);
+  text-transform: capitalize;
+}
+
+.bloglist > *:not(:last-child) {
+  border-bottom: 3px dotted #161616;
+  padding-bottom: var(--padding);
+}
+
+.blogitem {
+  margin: var(--padding);
+}
+
+.meta {
+  font-size: smaller;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  font-size: small;
+}
+
+.meta > *:not(:last-child):after {
+  content: ' | ';
+}
+
+.blogitem .title {
+  font-weight: bold;
+  font-family: sans;
+}
+
+.blogtaglist {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25em;
+  margin: 0;
+  padding: 0;
+}
+
+.blogtaglist li {
+  margin: 0;
+  padding: 0;
+}
+
+.blogtaglist li:not(:last-child):after {
+  content: ',';
+}
+
+article nav.toc {
+  float: right;
+  background: #0002;
+  padding: 0 1.5em;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  font-size: smaller;
+}
+
+article nav.toc ul {
+  padding: 0;
+  margin-left: 1.5em;
+  list-style-position: inside;
+}
+
+article nav.toc > ul {
+  padding: 0;
+  margin-left: 0;
+}
+
+article .toc ul li {
+  padding: 0;
+  margin: 0;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding);
+  margin: var(--padding);
+}
+
+.project .branchinfo {
+  font-size: small;
+}
+
+.project .description {
+  font-size: smaller;
+}
+
+.project .title {
+  font-family: sans;
+  font-weight: bold;
+}
+
+.project .language {
+  font-size: small;
+  background: #333;
+  color: #eee;
+  font-family: sans;
+  padding: 0.25em;
+  border-radius: 0.25em;
+  float: right;
+}
+
+.projects > *:not(:last-child) {
+  border-bottom: 3px dotted #161616;
+  padding-bottom: var(--padding);
+}
+
+a[title] {
+  cursor: help;
+}
