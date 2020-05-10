@@ -1,13 +1,13 @@
 import React from 'react'
 //import { MagicMotion, motion } from 'framer-motion'
-import { BlogItem } from './Item'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { BlogItem } from './Item'
 import { postSelectors } from './postSlice'
 
 export default function List() {
-  let data = useSelector(postSelectors.selectAll)
   const { tag, category } = useParams()
+  let data = useSelector(postSelectors.selectAll)
 
   if (tag) {
     data = data.filter(x => x.tags.includes(tag))

@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { categoriesSelector, fetchPosts, postSelectors } from './Posts/postSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPosts, postSelectors, categoriesSelector } from './Posts/postSlice'
 
 export default function Layout({ children }: { children: JSX.Element }) {
-  const categories = useSelector(categoriesSelector)
-  const posts = useSelector(postSelectors.selectAll)
-
   const dispatch = useDispatch()
+  const categories = useSelector(categoriesSelector)
+  const data = useSelector(postSelectors.selectAll)
 
   useEffect(() => {
-    if (!posts || !posts.length) {
+    if (!data || !data.length) {
       dispatch(fetchPosts())
     }
-  }, [posts, dispatch])
+  }, [data, dispatch])
+
   return (
     <>
       <header>

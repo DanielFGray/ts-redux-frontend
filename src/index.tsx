@@ -34,11 +34,11 @@ export default function App() {
         <Router>
           <Layout>
             <Routes>
-              <Route path="/tags/:tag" element={<List />} />
-              <Route path="/category/:category" element={<List />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/:id" element={<Item />} />
-              <Route path="/" element={<List />} />
+              <Route path="/tags/:tag" render={() => <List />} />
+              <Route path="/category/:category" render={() => <List />} />
+              <Route path="/projects" render={() => <Projects />} />
+              <Route path="/:id" render={() => <Item />} />
+              <Route path="/" render={() => <List />} />
             </Routes>
           </Layout>
         </Router>
