@@ -1,5 +1,5 @@
 {
-  "name": "react RTK blog",
+  "name": "react-RTK-blog",
   "version": "0.1.0",
   "description": "makes use of redux toolkit entity adapters and async thunks, as well as io-ts to validate graphql responses",
   "keywords": [],
