@@ -1,67 +1,53 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import {
   BrowserRouter as Router,
   Switch as Routes,
   Route,
 } from 'react-router-dom'
-import { Provider, useSelector, useDispatch } from 'react-redux'
-import List from './List'
-import Item from './Item'
+import { Provider } from 'react-redux'
+import List from './Posts/List'
+import Item from './Posts/Item'
 import 'normalize.css'
 import './prism.css'
 import './styles.css'
 import Projects from './Projects'
 import Layout from './Layout'
 import store from './store'
-import { fetchPosts, postSelectors } from './fetchPosts'
 import ErrorBoundary from './ErrorBoundary'
 
-export default function App() {
-  const posts = useSelector(postSelectors.selectAll)
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (!posts || !posts.length) {
-      dispatch(fetchPosts())
-    }
-  }, [posts, dispatch])
-
-  return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/tags/:tag" render={() => <List />} />
-          <Route path="/category/:category" render={() => <List />} />
-          <Route path="/projects" render={() => <Projects />} />
-          <Route path="/:id" render={() => <Item />} />
-          <Route path="/" render={() => <List />} />
-        </Routes>
-      </Layout>
-    </Router>
-  )
-}
-
-function errorHandler({ error, reset }) {
+function errorHandler({ error, reset }: { error: Error, reset: () => void }) {
   console.error(error)
   return (
-    <>
+    <div className="error">
       <h1>oops :(</h1>
       <div>Hopefully there's an error in the console</div>
-      <div>
-        <button onClick={() => reset}>reset</button>
-      </div>
-    </>
+      <button onClick={() => reset()}>reset</button>
+    </div>
   )
 }
 
-const rootElement = document.getElementById('root')
-ReactDOM.render(
-  <ErrorBoundary onError={errorHandler}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </ErrorBoundary>,
-  rootElement,
-)
+export default function App() {
+  return (
+    <ErrorBoundary onError={errorHandler}>
+      <Provider store={store}>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/tags/:tag" element={<List />} />
+              <Route path="/category/:category" element={<List />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/:id" element={<Item />} />
+              <Route path="/" element={<List />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </Provider>
+    </ErrorBoundary>
+  )
+}
+
+if (document) {
+  const rootElement = document.getElementById('root')
+  ReactDOM.render(<App />, rootElement)
+}

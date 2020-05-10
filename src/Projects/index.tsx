@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { projectSelectors, fetchProjects } from './fetchProjects'
+import { projectSelectors, fetchProjects } from './projectSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import ago from 's-ago'
-import Linkify from './Linkify'
+import Linkify from '../Linkify'
 
 export default function Projects() {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ export default function Projects() {
     <div className="projects">
       {data.map(e => {
         const [branch] = e.branches ?? []
-        const dateObj = branch ? new Date(branch.committedDate) : {}
+        const dateObj = new Date(branch ? branch.committedDate : e.updated)
 
         return (
           <div className="project" key={e.url}>

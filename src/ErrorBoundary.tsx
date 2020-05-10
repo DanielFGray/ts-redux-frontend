@@ -1,20 +1,16 @@
 import React from 'react'
 
-export default class ErrorBoundary extends React.Component {
-  constructor(props) {
+interface P { children: JSX.Element, onError: React.FC<{ error: Error, reset: () => void }> }
+interface S { error: null | Error }
+export default class ErrorBoundary extends React.Component<P, S> {
+  constructor(props: P) {
     super(props)
     this.state = { error: null }
     this.reset = this.reset.bind(this)
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: any) {
     return { error }
-  }
-
-  componentDidCatch(error, info) {
-    if (this.props.didCatch) {
-      this.props.didCatch({ error, info })
-    }
   }
 
   reset() {

@@ -10,6 +10,7 @@ export default function Linkify(str: string) {
   const tokens: Token[] = []
   let last = 0
   if (!str) return tokens
+  // @ts-ignore
   str.replace(regex, (m, ...args) => {
     const index = args[args.length - 2]
     tokens.push({

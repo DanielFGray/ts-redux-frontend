@@ -5,9 +5,8 @@ import {
   createSelector,
 } from '@reduxjs/toolkit'
 import * as t from 'io-ts'
-import { RootState } from './store'
+import { RootState } from '../store'
 import { fold } from 'fp-ts/lib/Either'
-import { draw } from 'io-ts/lib/Tree'
 
 const Post = t.type({
   id: t.string,
@@ -47,15 +46,7 @@ export const fetchPosts = createAsyncThunk('fetch/posts', async () =>
   })
     .then(x => x.json())
     .then(x => t.array(Post).decode(x.data.BlogList))
-    .then(
-      fold(
-        x => {
-          console.log(draw(x))
-          return []
-        },
-        x => x,
-      ),
-    ),
+    .then(fold(_ => [], x => x)),
 )
 
 export const fetchPostContent = createAsyncThunk(
@@ -120,6 +111,7 @@ const posts = createSlice({
     })
     build.addCase(fetchPosts.rejected, (state, action) => {
       state.loading = false
+      // @ts-ignore
       state.error = action.payload
     })
     build.addCase(fetchPostContent.pending, (state, action) => {
@@ -131,6 +123,7 @@ const posts = createSlice({
     })
     build.addCase(fetchPostContent.rejected, (state, action) => {
       state.loading = false
+      // @ts-ignore
       state.error = action.payload
     })
   },

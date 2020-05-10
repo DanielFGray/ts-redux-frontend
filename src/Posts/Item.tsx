@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ago from 's-ago'
-import { Post, postSelectors, fetchPostContent } from './fetchPosts'
+import { Post, postSelectors, fetchPostContent } from './postSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from './store'
+import { RootState } from '../store'
 
 export default function Item() {
   const params = useParams<{ id: string }>()
@@ -14,14 +14,16 @@ export default function Item() {
 
   useEffect(() => {
     if (!data || !data.content) {
+      // @ts-ignore
       dispatch(fetchPostContent(params.id))
     }
-  }, [data, dispatch, params.id])
+  }, [data, params.id])
 
+  if (!data) return null
   return <BlogItem data={data} expand />
 }
 
-export function BlogItem({ data, expand }: { data: Post; expand: boolean }) {
+export function BlogItem({ data, expand }: { data: Post; expand?: boolean }) {
   if (!data) return null
   const dateObj = new Date(data.date)
   return (

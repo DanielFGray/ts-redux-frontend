@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import posts from './fetchPosts'
-import projects from './fetchProjects'
+import posts from './Posts/postSlice'
+import projects from './Projects/projectSlice'
 
 export const reducer = combineReducers({
   posts: posts.reducer,

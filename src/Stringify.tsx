@@ -1,6 +1,6 @@
 import React from 'react'
 
-function replacer(k, v) {
+function replacer(_: string, v: unknown) {
   if (typeof v === 'function') return '[function]'
   if (typeof v === 'undefined') return 'undefined'
   return v

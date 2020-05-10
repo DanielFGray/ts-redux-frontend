@@ -3,7 +3,7 @@ import React from 'react'
 import { BlogItem } from './Item'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { postSelectors } from './fetchPosts'
+import { postSelectors } from './postSlice'
 
 export default function List() {
   let data = useSelector(postSelectors.selectAll)

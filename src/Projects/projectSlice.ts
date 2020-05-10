@@ -3,7 +3,7 @@ import {
   createAsyncThunk,
   createEntityAdapter,
 } from '@reduxjs/toolkit'
-import { RootState } from './store'
+import { RootState } from '../store'
 import { fold } from 'fp-ts/lib/Either'
 import * as t from 'io-ts'
 
@@ -93,6 +93,7 @@ const projects = createSlice({
     })
     build.addCase(fetchProjects.rejected, (state, action) => {
       state.loading = false
+      // @ts-ignore
       state.error = action.payload
     })
   },
