@@ -35,6 +35,21 @@ a {
   color: #ffffff;
 }
 
+textarea,
+select,
+button,
+input[type] {
+  color: var(--text-color);
+  margin-bottom: 10px;
+  background-color: #333;
+  border: 1px solid #333;
+  outline: 0;
+  border-radius: 4px;
+  box-shadow: none;
+  user-select: none;
+  vertical-align: baseline;
+}
+
 .topnav .active {
   font-weight: bold;
 }
@@ -130,6 +145,29 @@ article .toc ul li {
   margin: var(--padding);
 }
 
+.projects .controls {
+  font-size: small;
+  text-align: right;
+  display: block;
+}
+
+.projects .controls button {
+  padding: 0.25em 0.5em;
+  margin-left: 0.5em;
+  cursor: pointer;
+}
+
+.projects button.active {
+  border: 1px solid #666;
+}
+
+.projects .controls .reset {
+  background: #a00;
+  font-size: xx-small;
+  color: #222;
+  font-weight: bold;
+}
+
 .project .branchinfo {
   font-size: small;
 }
@@ -151,6 +189,7 @@ article .toc ul li {
   padding: 0.25em;
   border-radius: 0.25em;
   float: right;
+  cursor: pointer;
 }
 
 .projects > *:not(:last-child) {
