@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { projectSelectors, fetchProjects } from './projectSlice'
+import { Project, projectSelectors, fetchProjects } from './projectSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import ago from 's-ago'
 import Linkify from '../Linkify'
@@ -23,7 +23,7 @@ export default function Projects() {
       return true
     })
     .sort((a, b) => {
-      const fn = x => x[sort === 'stars' ? 'stars' : 'updated']
+      const fn = (x: Project) => x[sort === 'stars' ? 'stars' : 'updated']
       const aa = fn(a)
       const bb = fn(b)
       return aa > bb ? -1 : aa < bb ? 1 : 0
@@ -59,22 +59,32 @@ export default function Projects() {
         const dateObj = new Date(branch ? branch.committedDate : e.updated)
         return (
           <div className="project" key={e.url}>
-            {e.language && (
-              <button className={`language ${filter === e.language ? 'active' : ''}`} onClick={() => toggleFilter(e.language)}>
-                {e.language}
-              </button>
+            {(({ language }) => {
+              if (language)
+                return (
+                  <button className="language" onClick={() => toggleFilter(language)}>
+                    {language}
+                  </button>
+                )
+              return null
+            })(e)}
+            <div className="title">
+              <a href={e.url} target="_blank" rel="noopener noreferrer">
+                {e.name}
+              </a>
+            </div>
+            {e.description && (
+              <div className="description">
+                {Linkify(e.description)}
+              </div>
             )}
-            <div className="title"><a href={e.url} target="_blank" rel="noopener noreferrer">{e.name}</a></div>
-            {e.description && <div className="description">{Linkify(e.description)}</div>}
             {branch && (
               <div className="branchinfo">
                 {'committed '}
                 <a title={dateObj.toLocaleString()}>
                   {ago(dateObj)}
                 </a>
-                {' on '}
-                {branch.name}
-                {': '}
+                {` on ${branch.name}: `}
                 <a href={branch.commitUrl} className="message" target="_blank" rel="noopener noreferrer">{branch.message}</a>
               </div>
             )}

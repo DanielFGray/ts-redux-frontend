@@ -1,10 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  BrowserRouter as Router,
-  Switch as Routes,
-  Route,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch as Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import List from './Posts/List'
 import Item from './Posts/Item'
