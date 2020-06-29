@@ -81,12 +81,13 @@ a:link:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 1em;
   font-size: small;
-}
 
-.meta > *:not(:last-child)::after {
-  content: ' | ';
+  & > *:not(:last-child)::after {
+    /* content: ' | '; */
+    margin-left: 0.5em;
+  }
 }
 
 .blogitem .title {
@@ -102,15 +103,15 @@ a:link:hover {
   gap: 0.25em;
   margin: 0;
   padding: 0;
-}
 
-.blogtaglist li {
-  margin: 0;
-  padding: 0;
-}
+  & li {
+    margin: 0;
+    padding: 0;
+  }
 
-.blogtaglist li:not(:last-child)::after {
-  content: ',';
+  & li:not(:last-child)::after {
+    content: ',';
+  }
 }
 
 article nav.toc {
@@ -120,22 +121,22 @@ article nav.toc {
   margin-left: 1em;
   margin-bottom: 1em;
   font-size: smaller;
-}
 
-article nav.toc ul {
-  padding: 0;
-  margin-left: 1.5em;
-  list-style-position: inside;
-}
+  & ul {
+    padding: 0;
+    margin-left: 1.5em;
+    list-style-position: inside;
+  }
 
-article nav.toc > ul {
-  padding: 0;
-  margin-left: 0;
-}
+  & > ul {
+    padding: 0;
+    margin-left: 0;
+  }
 
-article .toc ul li {
-  padding: 0;
-  margin: 0;
+  & ul li {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .projects {
@@ -143,58 +144,60 @@ article .toc ul li {
   flex-direction: column;
   gap: var(--padding);
   margin: var(--padding);
+
+  & .controls {
+    font-size: small;
+    text-align: right;
+    display: block;
+  }
+
+  & .controls button {
+    padding: 0.25em 0.5em;
+    margin-left: 0.5em;
+    cursor: pointer;
+  }
+
+  & button.active {
+    border: 1px solid #666;
+  }
+
+  & .controls .reset {
+    background: #a00;
+    font-size: xx-small;
+    color: #222;
+    font-weight: bold;
+  }
+
+  & > *:not(:last-child) {
+    border-bottom: 3px dotted #161616;
+    padding-bottom: var(--padding);
+  }
 }
 
-.projects .controls {
-  font-size: small;
-  text-align: right;
-  display: block;
-}
+.project {
+  .branchinfo {
+    font-size: small;
+  }
 
-.projects .controls button {
-  padding: 0.25em 0.5em;
-  margin-left: 0.5em;
-  cursor: pointer;
-}
+  & .description {
+    font-size: smaller;
+  }
 
-.projects button.active {
-  border: 1px solid #666;
-}
+  & .title {
+    font-family: sans;
+    font-weight: bold;
+  }
 
-.projects .controls .reset {
-  background: #a00;
-  font-size: xx-small;
-  color: #222;
-  font-weight: bold;
-}
-
-.project .branchinfo {
-  font-size: small;
-}
-
-.project .description {
-  font-size: smaller;
-}
-
-.project .title {
-  font-family: sans;
-  font-weight: bold;
-}
-
-.project .language {
-  font-size: small;
-  background: #333;
-  color: #eee;
-  font-family: sans;
-  padding: 0.25em;
-  border-radius: 0.25em;
-  float: right;
-  cursor: pointer;
-}
-
-.projects > *:not(:last-child) {
-  border-bottom: 3px dotted #161616;
-  padding-bottom: var(--padding);
+  & .language {
+    font-size: small;
+    background: #333;
+    color: #eee;
+    font-family: sans;
+    padding: 0.25em;
+    border-radius: 0.25em;
+    float: right;
+    cursor: pointer;
+  }
 }
 
 a[title] {
