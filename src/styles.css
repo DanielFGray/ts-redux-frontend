@@ -12,7 +12,7 @@ body {
   max-width: 48em;
   margin: auto;
   color: #c9c9c9;
-  background-color: #222222;
+  background-color: #222;
 }
 
 h1,
@@ -32,7 +32,7 @@ h6 {
 
 a {
   text-decoration: none;
-  color: #ffffff;
+  color: #fff;
 }
 
 textarea,
@@ -85,7 +85,7 @@ a:link:hover {
   font-size: small;
 }
 
-.meta > *:not(:last-child):after {
+.meta > *:not(:last-child)::after {
   content: ' | ';
 }
 
@@ -109,7 +109,7 @@ a:link:hover {
   padding: 0;
 }
 
-.blogtaglist li:not(:last-child):after {
+.blogtaglist li:not(:last-child)::after {
   content: ',';
 }
 
